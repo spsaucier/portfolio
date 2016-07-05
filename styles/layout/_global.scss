@@ -29,6 +29,12 @@ body {
   text-transform: uppercase;
 }
 
+.full-panel {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
 .highlight {
   color: #eff5d9;
 }
@@ -50,7 +56,7 @@ body {
   max-width: 575px;
   margin: 5em auto;
   h3 {
-    margin-bottom: 2em;
+    margin-bottom: 3em;
   }
 }
 
