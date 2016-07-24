@@ -32,18 +32,18 @@ module.exports = {
         "pattern": ":collection/:title"
       },
       "metalsmith-collections": {
-        "blog": {
+        "projects": {
           "sortBy": "date",
           "reverse": true
         }
       },
       "metalsmith-pagination": {
-        "collections.blog": {
+        "collections.projects": {
           "perPage": 6,
-          "layout": "blog.html",
-          "first": "blog/index.html",
+          "layout": "projects.html",
+          "first": "projects/index.html",
           "noPageOne": true,
-          "path": "blog/:num/index.html"
+          "path": "projects/:num/index.html"
         }
       },
       "metalsmith-layouts": {

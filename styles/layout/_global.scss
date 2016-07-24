@@ -29,13 +29,24 @@ body {
   text-transform: uppercase;
 }
 
-.full-panel {
-  height: 100vh;
+.full-panel,
+.header-panel {
   display: flex;
   align-items: center;
 }
+.full-panel {
+  height: 100vh;
+}
+.header-panel {
+  min-height: 50vh;
+  border-bottom: 1px dashed;
+}
 
-.highlight {
+.highlight,
+a,
+a:hover,
+a:focus,
+a:visited {
   color: #edf2dc;
 }
 
@@ -68,4 +79,19 @@ body {
   font-size: 0.9em;
   vertical-align: top;
   color: #edf2dc;
+}
+
+.content {
+  margin: 100px auto;
+  max-width: 800px;
+}
+
+.work {
+  margin-top: 30px;
+  li {
+    font-weight: 600;
+    small {
+      font-weight: 400;
+    }
+  }
 }

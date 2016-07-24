@@ -2,7 +2,7 @@
 {{#extend "default"}}
     {{#content "main"}}
         <div class="container">
-            <div class="full-panel">
+            <div class="header-panel">
                 <div class="tac heading">
                     <h1 class="mega tac">Stephen <span class="highlight">Saucier</span></h1>
                     <h2 class="grande">Full-stack JS <span class="highlight">web developer</span>, <em>entrepreneur</em>, and UI designer.</h2>
@@ -23,7 +23,62 @@
                     </div>
                 </div>
             </div>
+
+            <div class="content">
+                <h3>Currently working full-time, building apps for <a href="https://www.gatherhere.com">Gather</a> in Atlanta and doing freelance work on the side.</h3>
+
+                <div class="row work">
+                    <div class="col-sm-6">
+                        <h4>Selected freelance projects:</h4>
+                        <ul>
+                            <li>Glock <small>- <a target="_blank" href="http://singlestack9.com">Single Stack 9</a>: all development</small></li>
+                            <li>sixstepsrecords <small>- <a target="_blank" href="http://sixstepsrecords.com">Brand Website</a>: all design &amp; development</small></li>
+                            <li>Mizuno <small>- <a target="_blank" href="http://mizunousa.com">eCommerce Website</a>: development</small></li>
+                            <li>Ever Weddings <small>- <a target="_blank" href="http://everweddings.co">Brand Website</a>: all branding, design &amp; development</small></li>
+                            <li>Goldfish <small>- <a target="_blank" href="http://goldfishsmiles.com">Goldfish Smiles</a>: development</small></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>Other notable recent clients:</h4>
+                        <ul>
+                            <li>L'Oreal</li>
+                            <li>7UP</li>
+                            <li>Kroger</li>
+                            <li>Publix</li>
+                            <li>Marriott</li>
+                            <li>Axon (ZTE)</li>
+                            <!-- <li>Nerf</li>
+                            <li>Indian Motorcycles</li>
+                            <li>Americold</li>
+                            <li>Pergo</li>
+                            <li>Holland-America Line</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
+        <ul>
+        {{#each pagination.files}}
+          <li>
+            <h2><a href="/{{{ this.path }}}/" rel="bookmark">{{this.title}}</a></h2>
+            {{{this.excerpt}}}
+          </li>
+        {{/each}}
+        </ul>
+
+        {{#if pagination}}
+          <nav class="pagination">
+            {{#if pagination.next}}
+              <a href="/{{removeIndex pagination.next.path}}" class="btn">&lt; Prev</a>
+            {{/if}}
+
+            {{#if pagination.previous}}
+              <a href="/{{removeIndex pagination.previous.path}}" class="btn">Next &gt;</a>
+            {{/if}}
+          </nav>
+        {{/if}}
 
     {{/content}}
 {{/extend}}
