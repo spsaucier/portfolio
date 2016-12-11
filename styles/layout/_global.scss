@@ -43,6 +43,7 @@ body {
 }
 
 .highlight,
+.tag,
 a,
 a:hover,
 a:focus,
@@ -78,7 +79,6 @@ a:visited {
   padding: 0 3px;
   font-size: 0.9em;
   vertical-align: top;
-  color: #edf2dc;
 }
 
 .content {
@@ -97,5 +97,39 @@ a:visited {
     small {
       font-weight: 400;
     }
+  }
+}
+
+
+// THEMES
+[class*=theme-moss] {
+  color: #fff;
+  background: #134E5E; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #134E5E , #71B280); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #134E5E , #71B280); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  .highlight,
+  .tag,
+  a,
+  a:hover,
+  a:focus,
+  a:visited {
+    color: #bbffee;
+  }
+}
+
+[class*=theme-shroom] {
+  color: #fff;
+  background: #5C258D; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #5C258D , #4389A2); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #5C258D , #4389A2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  .highlight,
+  .tag,
+  a,
+  a:hover,
+  a:focus,
+  a:visited {
+    color: #bbffee;
   }
 }

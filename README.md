@@ -1,4 +1,8 @@
-# Metalsmith Base
+# StephenSaucier.com
+
+Forked from below:
+
+## Metalsmith Base
 
 A metalsmith base starter kit used at [Evocode.com](http://evocode.com/). Some features:
 
@@ -11,7 +15,7 @@ A metalsmith base starter kit used at [Evocode.com](http://evocode.com/). Some f
 - [Static Site, Blog, Robots, Sitemap](https://github.com/evocode/metalsmith-base/tree/master/content)
 - [MIT license](https://github.com/evocode/metalsmith-base/blob/master/LICENSE)
 
-## Install
+### Install
 
 ```
 mkdir newproject
@@ -19,7 +23,7 @@ git clone git@github.com:evocode/metalsmith-base.git newproject
 cd newproject
 npm install
 ```
-## Develop
+### Develop
 
 This command will fully build a development version of the site, start the gulp watchers, and setup a development server. The command output will list the server address to open in your browser.
 
@@ -27,7 +31,7 @@ This command will fully build a development version of the site, start the gulp 
 npm run start
 ```
 
-## Build
+### Build
 
 This command will build a production version of the site and sync it with a git repository, ready to be comitted.
 
@@ -42,7 +46,7 @@ After the repository is setup, simply run:
 npm run build
 ```
 
-## Commands
+### Commands
 
 1. `npm run dev` - Run a development build
 1. `npm run start` - Run a development build, start the development server and watchers
