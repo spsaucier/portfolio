@@ -1,55 +1,17 @@
 {
-  "name": "metalsmith-base",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "author": "Patrick Heeney",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:evocode/metalsmith-base.git"
-  },
-  "homepage": "https://github.com/evocode/metalsmith-base",
+  "name": "@example/basics",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./node_modules/.bin/gulp",
-    "start": "./node_modules/.bin/gulp server",
-    "debug": "DEBUG=metalsmith* ./node_modules/.bin/gulp",
-    "production": "./node_modules/.bin/gulp --production",
-    "build": "./node_modules/.bin/gulp --production --build && ./build.sh",
-    "watch": "./node_modules/.bin/gulp watch",
-    "vendor": "./node_modules/.bin/gulp vendor"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "devDependencies": {
-    "babel-core": "^5.0.0",
-    "babel-loader": "^5.3.2",
-    "babel-runtime": "^5.8.29",
-    "browser-sync": "^2.11.1",
-    "finalhandler": "^0.4.0",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-sass": "^2.0.4",
-    "handlebars": "^4.0.1",
-    "handlebars-layouts": "^3.1.2",
-    "metalsmith": "^2.0.1",
-    "metalsmith-assets": "^0.1.0",
-    "metalsmith-branch": "0.0.4",
-    "metalsmith-collections": "^0.7.0",
-    "metalsmith-drafts": "0.0.1",
-    "metalsmith-excerpts": "^1.0.0",
-    "metalsmith-html-minifier": "^1.1.0",
-    "metalsmith-layouts": "^1.4.0",
-    "metalsmith-markdown": "^0.2.1",
-    "metalsmith-pagination": "^1.2.0",
-    "metalsmith-permalinks": "^0.4.0",
-    "minimist": "^1.2.0",
-    "moment": "^2.10.6",
-    "serve-static": "^1.10.0",
-    "webpack": "^1.12.1"
+    "astro": "^1.0.0-beta.73"
   },
   "dependencies": {
-    "bootstrap": "https://github.com/twbs/bootstrap/archive/v4.0.0-alpha.2.tar.gz",
-    "gutenberg-web-type": "^1.2.1",
-    "jquery": "^3.4.1"
+    "@astrojs/netlify": "^0.4.10"
   }
 }

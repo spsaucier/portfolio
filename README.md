@@ -1,59 +1,42 @@
-# StephenSaucier.com
+# Welcome to [Astro](https://astro.build)
 
-Forked from below:
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
 
-## Metalsmith Base
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-A metalsmith base starter kit used at [Evocode.com](http://evocode.com/). Some features:
+## 🚀 Project Structure
 
-- [Metalsmith](http://metalsmith.io/)
-- [Gulp](http://gulpjs.com/)
-- [Bootstrap 4](https://github.com/twbs/bootstrap/tree/v4-dev)
-- [jQuery](https://github.com/jquery/jquery)
-- [Babel / ES6](https://babeljs.io/)
-- [Development Server](https://github.com/evocode/metalsmith-base/blob/master/gulpfile.js#L160)
-- [Static Site, Blog, Robots, Sitemap](https://github.com/evocode/metalsmith-base/tree/master/content)
-- [MIT license](https://github.com/evocode/metalsmith-base/blob/master/LICENSE)
-
-### Install
+Inside of your Astro project, you'll see the following folders and files:
 
 ```
-mkdir newproject
-git clone git@github.com:evocode/metalsmith-base.git newproject
-cd newproject
-npm install
-```
-### Develop
-
-This command will fully build a development version of the site, start the gulp watchers, and setup a development server. The command output will list the server address to open in your browser.
-
-```
-npm run start
+/
+├── public/
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-### Build
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-This command will build a production version of the site and sync it with a git repository, ready to be comitted.
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components or layouts.
 
-To link the build process to your repository, you can do of the following options:
+Any static assets, like images, can be placed in the `public/` directory.
 
-1. Create a repo dotfile: `echo "git@github.com:username/repository.git" > .buildrepo`
-1. Edit `package.json` script section: `"build": "./node_modules/.bin/gulp --production --build && ./build.sh git@github.com:username/repository.git"`
+## 🧞 Commands
 
-After the repository is setup, simply run:
+All commands are run from the root of the project, from a terminal:
 
-```
-npm run build
-```
+| Command           | Action                                       |
+| :---------------- | :------------------------------------------- |
+| `npm install`     | Installs dependencies                        |
+| `npm run dev`     | Starts local dev server at `localhost:3000`  |
+| `npm run build`   | Build your production site to `./dist/`      |
+| `npm run preview` | Preview your build locally, before deploying |
 
-### Commands
+## 👀 Want to learn more?
 
-1. `npm run dev` - Run a development build
-1. `npm run start` - Run a development build, start the development server and watchers
-1. `npm run debug` - Run a development build in debug mode
-1. `npm run production` - Run a production build, compiles assets and minifies
-1. `npm run build` - Run a production build and sync with git
-1. `npm run watch` - Start the gulp watchers
-1. `npm run vendor` - Copies over any vendor files from node_modules to metalsmith assets
-
-All commands can be run directly with: `./node_modules/.bin/gulp`
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
