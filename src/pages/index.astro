@@ -6,6 +6,10 @@ import Layout from "../layouts/Layout.astro";
 	<main>
 		<header>
 			<h1><span class="text-gradient">Stephen Saucier</span> is a top-shelf engineer &amp; manager.</h1>
+			<p class="contact">
+				<a href="mailto:stephen@saucier.co?Subject=Freelance%20work%20enquiry&amp;Body=Hey%20Stevo%21">→ Make Contact
+					←</a>
+			</p>
 			<p>
 				He's a full-stack web &amp; mobile app developer with over 12 years of experience building successful
 				startups &amp; platforms for scores of great clients.</p>
@@ -98,7 +102,6 @@ import Layout from "../layouts/Layout.astro";
 				</li>
 			</ul>
 			</p>
-			<p class="contact"><a href="mailto:stephen@saucier.co">→ Make Contact ←</a></p>
 		</header>
 	</main>
 </Layout>
@@ -119,7 +122,7 @@ import Layout from "../layouts/Layout.astro";
 	@media (max-width: 767px) {
 		h1 {
 			margin-top: 3vh;
-		margin-bottom: 3vh;
+			margin-bottom: 3vh;
 		}
 	}
 
@@ -132,10 +135,6 @@ import Layout from "../layouts/Layout.astro";
 	header p {
 		line-height: 1.45;
 		max-width: 56ch;
-	}
-
-	.intro {
-		margin-bottom: 1.5em;
 	}
 
 	main {
@@ -234,6 +233,17 @@ import Layout from "../layouts/Layout.astro";
 		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
 		gap: 1rem;
 		padding: 0;
+	}
+
+	@media (min-width: 980px) {
+	.contact {
+		float: right;
+		margin: 0 0 1em;
+		padding-left: 2em;
+	}
+}
+	.intro {
+		margin-bottom: 1.5em;
 	}
 
 	.contact a {
