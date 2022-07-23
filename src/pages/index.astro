@@ -9,7 +9,7 @@ import Layout from "../layouts/Layout.astro";
 			<p>
 				He's a full-stack web &amp; mobile app developer with over 12 years of experience building successful
 				startups &amp; platforms for scores of great clients.</p>
-				<p class="intro">
+			<p class="intro">
 				Some call him <b>&ldquo;Stevo&rdquo;</b>.
 			</p>
 			<p>
@@ -112,6 +112,15 @@ import Layout from "../layouts/Layout.astro";
 	h1 {
 		margin: 2rem 0;
 		line-height: 1.05;
+		margin-top: 10vh;
+		margin-bottom: 4vh;
+	}
+
+	@media (max-width: 767px) {
+		h1 {
+			margin-top: 3vh;
+		margin-bottom: 3vh;
+		}
 	}
 
 	header {
