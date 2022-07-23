@@ -1,15 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
 ---
 
 <Layout title="Stephen Saucier - web/mobile application developer in Atlanta">
 	<main>
 		<header>
 			<h1><span class="text-gradient">Stephen Saucier</span> is a top-shelf engineer &amp; manager.</h1>
-			<p>
-				He's a full-stack web &amp; mobile app developer with over 12 years experience building successful startups and
-				platforms for scores of great clients.
+			<p class="intro">
+				Stevo is a full-stack web &amp; mobile app developer with over 12 years of experience building successful
+				startups &amp; platforms for scores of great clients.
 			</p>
 			<p>
 			<ul>
@@ -45,6 +44,18 @@ import Card from "../components/Card.astro";
 						development</small>
 				</li>
 				<li>
+					Chick-Fil-A
+					<small>
+						<a target="_blank" href="https://chick-fil-a.com">Tablet point-of-sale</a> -
+						mobile development</small>
+				</li>
+				<li>
+					TST
+					<small>
+						<a target="_blank" href="https://booktst.com">Travel booking</a> -
+						lead front-end developer</small>
+				</li>
+				<li>
 					Ever Weddings
 					<small>
 						<a target="_blank" href="https://everweddings.com/">Boutique wedding planning</a> - all design &amp;
@@ -53,7 +64,8 @@ import Card from "../components/Card.astro";
 				<li>
 					Gather
 					<small>
-						<a target="_blank" href="https://gatherhere.com">B2B SaaS</a> - lead full-stack engineer</small>
+						<a target="_blank" href="https://gatherhere.com">B<sub>2</sub>B<sub>2</sub>C SaaS</a> - lead full-stack
+						engineer</small>
 				</li>
 				<li>
 					Beloved Benefit
@@ -84,20 +96,20 @@ import Card from "../components/Card.astro";
 				</li>
 			</ul>
 			</p>
-			<p><a href="mailto:stephen@saucier.co">→ Hit him up ←</a></p>
+			<p class="contact"><a href="mailto:stephen@saucier.co">→ Make Contact ←</a></p>
 		</header>
 	</main>
 </Layout>
 
 <style>
 	:root {
-		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
+		--text-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
 		--link-gradient: linear-gradient(-120deg, #642b73, #c6426e);
 	}
 
 	h1 {
 		margin: 2rem 0;
-		line-height: 1.1;
+		line-height: 1.05;
 	}
 
 	header {
@@ -111,6 +123,10 @@ import Card from "../components/Card.astro";
 		max-width: 55ch;
 	}
 
+	.intro {
+		margin-bottom: 1.5em;
+	}
+
 	main {
 		margin: auto;
 		padding: 1em;
@@ -120,7 +136,7 @@ import Card from "../components/Card.astro";
 
 	.text-gradient {
 		font-weight: 900;
-		background-image: var(--astro-gradient);
+		background-image: var(--text-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-size: 100% 200%;
@@ -141,39 +157,25 @@ import Card from "../components/Card.astro";
 		}
 	}
 
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		background-image: var(--link-gradient);
-		padding: 1rem;
-		border-radius: 0.4rem;
-		color: var(--color-bg);
-	}
-
-	.instructions code {
-		font-size: 0.875em;
-		border: 0.1em solid var(--color-border);
-		border-radius: 4px;
-		padding: 0.15em 0.25em;
-	}
-
 	ul {
 		list-style: none;
 		margin-left: 0;
 		margin-top: 0;
-		padding-left: 1em;
 		font-size: 1.8em;
+		padding-left: 0;
 	}
 
-	ul>li:before {
-		display: inline-block;
-		content: "-";
-		width: 1em;
-		margin-left: -1em;
-	}
+	@media (min-width: 768px) {
+		ul {
+			padding-left: 0em;
+		}
 
-	li {
-		margin-bottom: 0.3em;
+		ul>li:before {
+			display: inline-block;
+			content: "-";
+			width: 0.75em;
+			margin-left: -1em;
+		}
 	}
 
 	small {
@@ -188,6 +190,29 @@ import Card from "../components/Card.astro";
 		top: 0.3em;
 	}
 
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		font-weight: 700;
+	}
+
+	li small {
+		font-weight: normal;
+		display: block;
+		width: calc(100%);
+		margin: 0;
+		margin-bottom: 3em;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		line-clamp: 1;
+		background: none;
+		padding: 0;
+		border-radius: 0;
+	}
+
 	a {
 		color: inherit;
 		font-weight: 600;
@@ -200,7 +225,12 @@ import Card from "../components/Card.astro";
 		padding: 0;
 	}
 
-	.footer {
-		font-size: 0.6em;
+	.contact a {
+		font-weight: 900;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		display: inline-block;
+		padding: 0.5em 0.8em;
+		border: 1px dashed;
 	}
 </style>

@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "deploy": "npm build && netlify deploy -d dist/ --prod",
     "preview": "astro preview"
   },
   "devDependencies": {
