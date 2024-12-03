@@ -10,9 +10,9 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "astro": "^1.0.0-beta.73"
+    "astro": "^5.0.1"
   },
   "dependencies": {
-    "@astrojs/netlify": "^0.4.10"
+    "@astrojs/netlify": "^6.0.0"
   }
 }
