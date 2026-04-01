@@ -65,7 +65,6 @@
 		varying vec2 vUv;
 
 		uniform vec2 uResolution;
-		uniform float uTime;
 		uniform float uEffectiveTime;
 		uniform float uBlurMix;
 		uniform sampler2D uFlow;
@@ -123,7 +122,7 @@
 		}
 
 		float grain(vec2 uv, float time) {
-			vec2 seed = uv * uResolution + time;
+			vec2 seed = uv * (uResolution * 0.35) + time;
 			return fract(sin(dot(seed, vec2(12.9898, 78.233))) * 43758.5453);
 		}
 
@@ -141,18 +140,17 @@
 			) * 0.4;
 
 			vec2 offset2 = vec2(
-				snoise(uv * 0.6 + t * 0.08),
-				snoise(uv * 0.6 - t * 0.10 + 50.0)
-			) * 0.25;
+				snoise(uv * 0.65 + t * 0.05),
+				snoise(uv * 0.65 - t * 0.06 + 50.0)
+			) * 0.16;
 
 			vec2 distortedUv = uv + flowVector + offset + offset2;
 
 			float shape1 = snoise(distortedUv * 1.2 + t * 0.12);
 			float shape2 = snoise(distortedUv * 0.7 - t * 0.10 + vec2(50.0, 30.0));
-			float shape3 = snoise((distortedUv + offset * 0.3) * 1.8 + t * 0.08);
 			float wave = snoise(uv * 0.5 + t * 0.06) * 0.3;
 
-			float combined = shape1 * 0.4 + shape2 * 0.35 + shape3 * 0.25;
+			float combined = shape1 * 0.55 + shape2 * 0.45;
 			combined += wave;
 
 			float depth = snoise(distortedUv * 0.4 - t * 0.05);
@@ -161,10 +159,7 @@
 			combined = combined * 0.5 + 0.5;
 			combined = smoothstep(0.3, 0.7, combined);
 
-			float blur = 0.0;
-			blur += snoise(distortedUv * 0.8 + t * 0.07) * 0.4;
-			blur += snoise(distortedUv * 0.5 - t * 0.06) * 0.6;
-			blur = blur * 0.5 + 0.5;
+			float blur = snoise(distortedUv * 0.65 + t * 0.05) * 0.5 + 0.5;
 
 			float finalShape = mix(combined, blur, uBlurMix);
 			finalShape = smoothstep(0.2, 0.82, finalShape);
@@ -185,8 +180,8 @@
 			vignette = 1.0 - smoothstep(0.32, 1.08, vignette);
 			color *= mix(0.76, 1.0, vignette);
 
-			float grainValue = grain(uv, uTime * 120.0);
-			color += (grainValue - 0.5) * 0.05;
+			float grainValue = grain(uv, uEffectiveTime * 28.0);
+			color += (grainValue - 0.5) * 0.03;
 			color += flowStrength * 0.045;
 
 			gl_FragColor = vec4(color, 1.0);
@@ -279,7 +274,7 @@
 		gl.vertexAttribPointer(location, 2, gl.FLOAT, false, 0, 0);
 	};
 
-	const flowSize = 256;
+	const flowSize = 128;
 	const initialFlow = new Uint8Array(flowSize * flowSize * 4);
 	for (let index = 0; index < initialFlow.length; index += 4) {
 		initialFlow[index] = 128;
@@ -305,12 +300,15 @@
 	let effectiveTime = 0;
 	let blurMix = 0.1;
 	let raf = 0;
+	let lastRenderTime = 0;
+	const frameInterval = 1000 / 30;
 	const target = { x: 0.5, y: 0.5 };
 	const pointer = { x: 0.5, y: 0.5 };
 	const lastPointer = { x: window.innerWidth * 0.5, y: window.innerHeight * 0.5 };
 	const velocity = { x: 0, y: 0 };
 	let lastFrame = performance.now();
 	let hasPointer = false;
+	let isVisible = document.visibilityState !== 'hidden';
 
 	const swapFlow = () => {
 		const texture = flowFront.texture;
@@ -322,7 +320,7 @@
 	};
 
 	const resize = () => {
-		dpr = Math.min(window.devicePixelRatio || 1, 2);
+		dpr = Math.min(window.devicePixelRatio || 1, 1.25);
 		width = window.innerWidth;
 		height = window.innerHeight;
 		canvas.width = Math.round(width * dpr);
@@ -373,13 +371,20 @@
 		gl.bindTexture(gl.TEXTURE_2D, flowFront.texture);
 		gl.uniform1i(getUniform(renderProgram, 'uFlow'), 0);
 		gl.uniform2f(getUniform(renderProgram, 'uResolution'), width, height);
-		gl.uniform1f(getUniform(renderProgram, 'uTime'), currentTime);
 		gl.uniform1f(getUniform(renderProgram, 'uEffectiveTime'), effectiveTime);
 		gl.uniform1f(getUniform(renderProgram, 'uBlurMix'), blurMix);
 		gl.drawArrays(gl.TRIANGLES, 0, 3);
 	};
 
 	const frame = (time) => {
+		if (!isVisible) return;
+
+		if (!reducedMotionQuery.matches && time - lastRenderTime < frameInterval) {
+			raf = window.requestAnimationFrame(frame);
+			return;
+		}
+		lastRenderTime = time;
+
 		const delta = Math.min((time - lastFrame) / 1000, 0.04);
 		lastFrame = time;
 
@@ -393,8 +398,8 @@
 
 		currentTime += delta;
 		const intensity = Math.min(8, 1 + Math.hypot(velocity.x, velocity.y) * 4.5);
-		effectiveTime += delta * 0.7 * intensity;
-		const nextBlurMix = Math.max(0.16, Math.min(0.58, 0.18 + (intensity - 1) * 0.05));
+		effectiveTime += delta * 0.42 * intensity;
+		const nextBlurMix = Math.max(0.16, Math.min(0.46, 0.18 + (intensity - 1) * 0.035));
 		blurMix += (nextBlurMix - blurMix) * 0.08;
 
 		renderFlow();
@@ -409,6 +414,7 @@
 		window.cancelAnimationFrame(raf);
 		resize();
 		lastFrame = performance.now();
+		lastRenderTime = 0;
 		frame(lastFrame);
 	};
 
@@ -438,6 +444,11 @@
 		if (!event.relatedTarget || event.relatedTarget.nodeName === 'HTML') {
 			hasPointer = false;
 		}
+	});
+	document.addEventListener('visibilitychange', () => {
+		isVisible = document.visibilityState !== 'hidden';
+		if (isVisible) start();
+		else window.cancelAnimationFrame(raf);
 	});
 	reducedMotionQuery.addEventListener('change', start);
 
